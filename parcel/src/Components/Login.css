@@ -1,0 +1,71 @@
+.main-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+.login-container {
+	max-width: 600px; /* Increased max-width */
+	margin: auto;
+	padding: 30px; /* Increased padding */
+	border: 1.5px solid #ddd; /* Increased border thickness */
+	border-radius: 7.5px; /* Increased border-radius */
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.15); /* Increased box shadow */
+	background-color: #fff;
+}
+
+h2 {
+	text-align: center;
+	color: #333;
+	font-size: 2em; /* Increased font size */
+}
+
+label {
+	display: block;
+	margin: 15px 0 7.5px; /* Increased top and bottom margins */
+	color: #555;
+	font-size: 1.125em; /* Increased font size */
+}
+
+input {
+	width: 100%;
+	padding: 12px; /* Increased padding */
+	margin-bottom: 22.5px; /* Increased margin-bottom */
+	box-sizing: border-box;
+	font-size: 1.125em; /* Increased font size */
+}
+
+button {
+	background-color: #4caf50;
+	color: white;
+	padding: 15px 22.5px; /* Increased padding */
+	border: none;
+	border-radius: 4.5px; /* Increased border-radius */
+	cursor: pointer;
+	width: 100%;
+	font-size: 1.125em; /* Increased font size */
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+.sign-up {
+	text-align: center;
+	margin-top: 30px; /* Increased margin-top */
+}
+
+.sign-up p {
+	margin: 0;
+	font-size: 1.125em; /* Increased font size */
+}
+
+.sign-up a {
+	color: #007bff;
+	text-decoration: none;
+	font-size: 1.125em; /* Increased font size */
+}
+
+.sign-up a:hover {
+	text-decoration: underline;
+}
