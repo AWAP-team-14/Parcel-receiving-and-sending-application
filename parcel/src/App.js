@@ -1,14 +1,16 @@
 import "./App.css";
-import Navbar from "/Users/sushanmaharjan/Desktop/Parcel-receiving-and-sending-application-frontend/parcel/src/Components/Navbar.jsx";
-import Banner from "/Users/sushanmaharjan/Desktop/Parcel-receiving-and-sending-application-frontend/parcel/src/Components/Banner.jsx";
+// import Navbar from "./Components/Navbar.jsx";
+// import Banner from "./Components/Banner.jsx";
+import Home from "./Components/Home.jsx";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<Navbar />
-				<Banner />
+				{/* <Navbar />
+				<Banner /> */}
+				<Home />
 			</BrowserRouter>
 		</div>
 	);
