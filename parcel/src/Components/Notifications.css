@@ -1,0 +1,30 @@
+/* NotificationPage.css */
+.notification-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+/* .logo {
+	margin-bottom: 20px;
+} */
+
+.notification-message {
+	text-align: center;
+}
+
+.notification-message h2 {
+	color: #4caf50;
+}
+
+.notification-message p {
+	margin-bottom: 20px;
+}
+
+.notification-message a {
+	text-decoration: none;
+	color: #4caf50;
+	font-weight: bold;
+}

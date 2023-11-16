@@ -1,0 +1,49 @@
+/* ParcelForm.css */
+.parcel-form-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f4f4f4;
+}
+
+.parcel-form {
+	width: 600px; 
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+}
+
+.form-group {
+	margin-bottom: 20px; /* Increased space between groups */
+}
+
+label {
+	display: block;
+	margin-bottom: 10px; /* Increased space between labels and inputs */
+	font-weight: bold;
+}
+
+input,
+textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 12px; /* Increased space between inputs */
+}
+
+button {
+	background-color: #4caf50;
+	color: #fff;
+	padding: 15px 25px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+button:hover {
+	background-color: #45a049;
+}

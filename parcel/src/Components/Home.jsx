@@ -52,7 +52,7 @@ function Home() {
 							platform that provides quality <span></span>{" "}
 							logistics solutions according to your needs.
 						</p>
-						<a href="">View Details</a>
+						<a href="/login">Send Parcel</a>
 					</div>
 				</div>
 			</div>

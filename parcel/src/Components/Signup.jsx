@@ -57,7 +57,7 @@ const SignUpPage = () => {
 						type="text"
 						id="number"
 						value={phone}
-						onChange={(e) => setEmail(e.target.value)}
+						onChange={(e) => setPhone(e.target.value)}
 					/>
 				</div>
 				<div>
