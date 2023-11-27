@@ -1,50 +1,48 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Navbar({ onCreateParcelClick, onTrackParcelClick }) {
+export default function Navbar({
+  onCreateParcelClick,
+  onTrackParcelClick,
+  onHistoryClick,
+  onLogoutClick,
+  onDeleteAccountClick,
+}) {
   const navigate = useNavigate();
-  const [createParcelClicked, setCreateParcelClicked] = useState(false);
-  const [trackParcelClicked, setTrackParcelClicked] = useState(false);
+  const [selectedComponent, setSelectedComponent] = useState(null);
+
   const handleLogout = async () => {
-    localStorage.removeItem("token");
+    setSelectedComponent(null);
+    onLogoutClick();
     navigate("/home");
   };
+
   const handleDelete = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/delete/", {
-        method: "DELETE",
-        headers: {
-          auth_token: localStorage.getItem("token"),
-          user: localStorage.getItem("user"),
-        },
-      });
-
-      const json = await response.json();
-
-      if (json.success) {
-        // Account deleted successfully
-        localStorage.removeItem("token");
-        navigate("/home");
-      } else {
-        // Handle error, show a message, etc.
-        console.error("Failed to delete account");
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
+    setSelectedComponent(null);
+    onDeleteAccountClick();
+    navigate("/home");
   };
 
   const handleCreateParcel = async () => {
-    setCreateParcelClicked(true);
-    setTrackParcelClicked(false); // Reset trackParcelClicked
+    setSelectedComponent("createParcel");
     onCreateParcelClick();
     navigate("/home");
   };
 
   const handleTrackParcel = async () => {
-    setTrackParcelClicked(true);
-    setCreateParcelClicked(false); // Reset createParcelClicked
+    setSelectedComponent("trackParcel");
     onTrackParcelClick();
+    navigate("/home");
+  };
+
+  const handleHistory = async () => {
+    setSelectedComponent("history");
+    onHistoryClick();
+    navigate("/home");
+  };
+
+  const handleGoHome = () => {
+    setSelectedComponent(null);
     navigate("/home");
   };
 
@@ -61,7 +59,11 @@ export default function Navbar({ onCreateParcelClick, onTrackParcelClick }) {
         }}
       >
         <div className="container-fluid">
-          <Link className="navbar-brand fs-1 fst-italic" to="/home ">
+          <Link
+            className="navbar-brand fs-1 fst-italic"
+            to="/home"
+            onClick={handleGoHome}
+          >
             GoParcel
           </Link>
           <span
@@ -80,7 +82,7 @@ export default function Navbar({ onCreateParcelClick, onTrackParcelClick }) {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
             {!localStorage.getItem("token") ? (
               <div className="d-flex">
-                <Link className="btn bg-white text-success mx-1 " to="/login">
+                <Link className="btn bg-white text-success mx-1" to="/login">
                   Login
                 </Link>
                 <Link className="btn bg-white text-success mx-1" to="/signup">
@@ -91,7 +93,7 @@ export default function Navbar({ onCreateParcelClick, onTrackParcelClick }) {
               <div className="d-flex">
                 <button
                   className={`bg-white text-danger mx-2 ${
-                    trackParcelClicked ? "clicked" : ""
+                    selectedComponent === "trackParcel" ? "clicked" : ""
                   }`}
                   onClick={handleTrackParcel}
                 >
@@ -99,15 +101,17 @@ export default function Navbar({ onCreateParcelClick, onTrackParcelClick }) {
                 </button>
                 <button
                   className={`bg-white text-danger mx-2 ${
-                    createParcelClicked ? "clicked" : ""
+                    selectedComponent === "createParcel" ? "clicked" : ""
                   }`}
                   onClick={handleCreateParcel}
                 >
                   Create Parcel
                 </button>
                 <button
-                  className="bg-white text-danger mx-2"
-                  //onClick={handleHistory}
+                  className={`bg-white text-danger mx-2 ${
+                    selectedComponent === "history" ? "clicked" : ""
+                  }`}
+                  onClick={handleHistory}
                 >
                   History
                 </button>

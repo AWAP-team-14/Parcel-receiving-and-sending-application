@@ -9,7 +9,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/login/", {
+    const response = await fetch(`${process.env.REACT_APP_API}/login/`, {
       // credentials: 'include',
       // Origin:"http://localhost:3000/login",
       method: "POST",
@@ -36,7 +36,7 @@ export default function Login() {
       // Retrieving user object from local storage and accessing the 'name' property
       //const storedUser = JSON.parse(localStorage.getItem("user"));
 
-      navigate("/home");
+      navigate("/");
     } else {
       alert("Enter Valid Credentials");
     }
@@ -88,6 +88,9 @@ export default function Login() {
               <br />
               New User? Click New user to Sign Up
               <Link to="/signup"> New User</Link>
+              <br />
+              Or Click to go Home
+              <Link to="/home"> Home</Link>
             </label>
           </div>
         </form>
@@ -95,7 +98,3 @@ export default function Login() {
     </div>
   );
 }
-
-// , 'Accept': 'application/json',
-//         'Access-Control-Allow-Origin': 'http://localhost:3000/login', 'Access-Control-Allow-Credentials': 'true',
-//         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",'Access-Control-Allow-Methods': 'PUT, POST, GET, DELETE, OPTIONS'

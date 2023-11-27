@@ -9,13 +9,16 @@ const TrackParcel = () => {
 
     const handleTrack = async () => {
       try {
-        const response = await fetch("http://localhost:5000/createparcel/", {
-          method: "GET",
-          headers: {
-            auth_token: localStorage.getItem("token"),
-            mobile: localStorage.getItem("mobile"),
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_API}/createparcel/`,
+          {
+            method: "GET",
+            headers: {
+              auth_token: localStorage.getItem("token"),
+              mobile: localStorage.getItem("mobile"),
+            },
+          }
+        );
 
         if (!isMounted) {
           return;
@@ -25,14 +28,11 @@ const TrackParcel = () => {
         console.log(json);
         if (json.isSender) {
           localStorage.setItem("isSender", true);
-          localStorage.setItem("isRecipient", "");
-        } else if (json.isRecipient) {
-          localStorage.setItem("isRecipient", true);
+        } else {
           localStorage.setItem("isSender", "");
         }
 
         console.log(localStorage.getItem("isSender"));
-        console.log(localStorage.getItem("isRecipient"));
 
         if (json.success) {
           setParcels(json.response || []);
@@ -66,79 +66,150 @@ const TrackParcel = () => {
             <div>
               {parcels.map((parcel, index) => (
                 <div key={index} className="card mb-3">
-                  <div className="row g-0">
-                    <div className="col-md-4">
-                      <div className="card-body">
-                        <div className="mb-3">
-                          <p
-                            style={{
-                              fontWeight: "bold",
-                              color: "rgb(72, 135, 248)",
-                              fontSize: "20px",
-                            }}
-                          >
-                            Sender Information
-                          </p>
-                          <p>Name: {parcel.sender.name}</p>
-                          <p>Address: {parcel.sender.address}</p>
-                          <p>Mobile: {parcel.sender.mobile}</p>
-
-                          {localStorage.getItem("isSender") && (
+                  {parcel.sender.mobile === localStorage.getItem("mobile") ? (
+                    <div className="row g-0">
+                      <div className="col-md-4">
+                        <div className="card-body">
+                          <div className="mb-3">
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(72, 135, 248)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Sender Information
+                            </p>
+                            <p>Name: {parcel.sender.name}</p>
+                            <p>Address: {parcel.sender.address}</p>
+                            <p>Locker Number: {parcel.senderCabinet}</p>
+                            <p>Mobile: {parcel.sender.mobile}</p>
                             <p>Sender Code: {parcel.senderCode}</p>
-                          )}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="card-body">
+                          <div className="mb-3">
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(72, 135, 248)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Recipient Information
+                            </p>
+                            <p>Name: {parcel.recipient.name}</p>
+                            <p>Address: {parcel.recipient.address}</p>
+                            <p>Mobile: {parcel.recipient.mobile}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="card-body">
+                          <div>
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(72, 135, 248)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Parcel Size
+                            </p>
+                            <p>Width: {parcel.parcelSize.width}</p>
+                            <p>Height: {parcel.parcelSize.height}</p>
+                            <p>Depth: {parcel.parcelSize.depth}</p>
+                            <p>Weight: {parcel.parcelSize.weight}</p>
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(246, 65, 47)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Status: {parcel.status}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-4">
-                      <div className="card-body">
-                        <div className="mb-3">
-                          <p
-                            style={{
-                              fontWeight: "bold",
-                              color: "rgb(72, 135, 248)",
-                              fontSize: "20px",
-                            }}
-                          >
-                            Recipient Information
-                          </p>
-                          <p>Name: {parcel.recipient.name}</p>
-                          <p>Address: {parcel.recipient.address}</p>
-                          <p>Mobile: {parcel.recipient.mobile}</p>
-                          {localStorage.getItem("isRecipient") && (
-                            <p>Recipient Code: {parcel.recipientCode}</p>
-                          )}
+                  ) : (
+                    <div className="row g-0">
+                      <div className="col-md-4">
+                        <div className="card-body">
+                          <div className="mb-3">
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(72, 135, 248)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Sender Information
+                            </p>
+                            <p>Name: {parcel.sender.name}</p>
+                            <p>Address: {parcel.sender.address}</p>
+                            <p>Mobile: {parcel.sender.mobile}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="card-body">
+                          <div className="mb-3">
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(72, 135, 248)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Recipient Information
+                            </p>
+                            <p>Name: {parcel.recipient.name}</p>
+                            <p>Address: {parcel.recipient.address}</p>
+                            {parcel.status === "Ready for Pickup" && (
+                              <p>Locker Number: {parcel.recipientCabinet}</p>
+                            )}
+                            {parcel.status === "Ready for Pickup" && (
+                              <p>Recipient Code: {parcel.recipientCode}</p>
+                            )}
+
+                            <p>Mobile: {parcel.recipient.mobile}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="card-body">
+                          <div>
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(72, 135, 248)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Parcel Size
+                            </p>
+                            <p>Width: {parcel.parcelSize.width}</p>
+                            <p>Height: {parcel.parcelSize.height}</p>
+                            <p>Depth: {parcel.parcelSize.depth}</p>
+                            <p>Weight: {parcel.parcelSize.weight}</p>
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "rgb(246, 65, 47)",
+                                fontSize: "20px",
+                              }}
+                            >
+                              Status: {parcel.status}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-4">
-                      <div className="card-body">
-                        <div>
-                          <p
-                            style={{
-                              fontWeight: "bold",
-                              color: "rgb(72, 135, 248)",
-                              fontSize: "20px",
-                            }}
-                          >
-                            Parcel Size
-                          </p>
-                          <p>Width: {parcel.parcelSize.width}</p>
-                          <p>Height: {parcel.parcelSize.height}</p>
-                          <p>Depth: {parcel.parcelSize.depth}</p>
-                          <p>Weight: {parcel.parcelSize.weight}</p>
-                          <p
-                            style={{
-                              fontWeight: "bold",
-                              color: "rgb(246, 65, 47)",
-                              fontSize: "20px",
-                            }}
-                          >
-                            Status: {parcel.status}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>

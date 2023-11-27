@@ -45,19 +45,25 @@ const CreateParcel = ({ onCloseCreateParcel }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/createparcel/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          auth_token: localStorage.getItem("token"),
-        },
-        body: JSON.stringify(parcelData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/createparcel/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            auth_token: localStorage.getItem("token"),
+          },
+          body: JSON.stringify(parcelData),
+        }
+      );
 
       const json = await response.json();
 
       if (json.success) {
         console.log(json);
+        alert("Parcel Created Successfully");
+        onCloseCreateParcel(); // Invoke the function to close the create parcel form
+        navigate("/home"); // Navigate back to the home page
       } else {
         console.error("Failed to create parcel");
       }

@@ -11,9 +11,7 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/signup/", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
+    const response = await fetch(`${process.env.REACT_APP_API}/signup/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,8 +26,6 @@ export default function Signup() {
     const json = await response.json();
     console.log(json);
     if (json.success) {
-      //save the auth toke to local storage and redirect
-      //localStorage.setItem("token", json.authToken);
       navigate("/home");
     } else {
       alert("Enter Valid Credentials");
@@ -103,6 +99,9 @@ export default function Signup() {
               <br />
               If Customer? Click Login for Customer login
               <Link to="/login"> Login</Link>
+              <br />
+              Or Click to go Home
+              <Link to="/home"> Home</Link>
             </label>
           </div>
         </form>
