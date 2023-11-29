@@ -10,7 +10,7 @@ const TrackParcel = () => {
     const handleTrack = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API}/createparcel/`,
+          `${process.env.REACT_APP_API}/createparcel`,
           {
             method: "GET",
             headers: {

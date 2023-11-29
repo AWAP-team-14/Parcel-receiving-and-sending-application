@@ -32,7 +32,7 @@ export default function Home() {
 
   const handleDeleteAccountClick = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API}/delete/`, {
+      const response = await fetch(`${process.env.REACT_APP_API}/delete`, {
         method: "DELETE",
         headers: {
           auth_token: localStorage.getItem("token"),

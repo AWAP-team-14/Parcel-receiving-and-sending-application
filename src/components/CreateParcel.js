@@ -46,7 +46,7 @@ const CreateParcel = ({ onCloseCreateParcel }) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API}/createparcel/`,
+        `${process.env.REACT_APP_API}/createparcel`,
         {
           method: "POST",
           headers: {

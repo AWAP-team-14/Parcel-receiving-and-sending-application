@@ -10,7 +10,7 @@ const TrackParcelsHistory = () => {
     const handleTrack = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API}/parcelhistory/`,
+          `${process.env.REACT_APP_API}/parcelhistory`,
           {
             method: "GET",
             headers: {
