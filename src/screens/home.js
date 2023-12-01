@@ -57,7 +57,7 @@ export default function Home() {
     setSelectedComponent(null);
   };
   return (
-    <div className="container">
+    <div>
       <Navbar
         onCreateParcelClick={handleCreateParcelClick}
         onTrackParcelClick={handleTrackParcelClick}
