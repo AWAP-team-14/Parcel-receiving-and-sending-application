@@ -82,9 +82,15 @@ const TrackParcel = () => {
                             </p>
                             <p>Name: {parcel.sender.name}</p>
                             <p>Address: {parcel.sender.address}</p>
-                            <p>Locker Number: {parcel.senderCabinet}</p>
+                            {parcel.status ===
+                              "Sender Droped the Parcel in Locker" && (
+                              <p>Locker Number: {parcel.senderCabinet}</p>
+                            )}
                             <p>Mobile: {parcel.sender.mobile}</p>
-                            <p>Sender Code: {parcel.senderCode}</p>
+                            {parcel.status ===
+                              "Sender Droped the Parcel in Locker" && (
+                              <p>Sender Code: {parcel.senderCode}</p>
+                            )}
                           </div>
                         </div>
                       </div>

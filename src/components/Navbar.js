@@ -6,6 +6,7 @@ export default function Navbar({
   onTrackParcelClick,
   onHistoryClick,
   onLogoutClick,
+  onGoHomeClick,
   onDeleteAccountClick,
 }) {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ export default function Navbar({
 
   const handleGoHome = () => {
     setSelectedComponent(null);
+    onGoHomeClick();
     navigate("/home");
   };
 

@@ -55,6 +55,7 @@ export default function Home() {
 
   const handleCloseComponent = () => {
     setSelectedComponent(null);
+    navigate("/home");
   };
   return (
     <div>
@@ -63,6 +64,7 @@ export default function Home() {
         onTrackParcelClick={handleTrackParcelClick}
         onHistoryClick={handleHistoryClick}
         onLogoutClick={handleLogoutClick}
+        onGoHomeClick={handleCloseComponent}
         onDeleteAccountClick={handleDeleteAccountClick}
       />
       <div
@@ -87,10 +89,10 @@ export default function Home() {
           )}
         {localStorage.getItem("token") &&
           selectedComponent === "trackParcel" && (
-            <TrackParcel onTrackParcelClick={handleCloseComponent} />
+            <TrackParcel onTrackParcelClick={handleTrackParcelClick} />
           )}
         {localStorage.getItem("token") && selectedComponent === "history" && (
-          <TrackParcelsHistory onHistoryClick={handleCloseComponent} />
+          <TrackParcelsHistory onHistoryClick={handleHistoryClick} />
         )}
         {localStorage.getItem("token") && selectedComponent === null && (
           <div style={{ paddingBottom: "312px" }}>
