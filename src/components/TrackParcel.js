@@ -25,24 +25,21 @@ const TrackParcel = () => {
         }
 
         const json = await response.json();
-        console.log(json);
         if (json.isSender) {
           localStorage.setItem("isSender", true);
         } else {
           localStorage.setItem("isSender", "");
         }
 
-        console.log(localStorage.getItem("isSender"));
-
         if (json.success) {
           setParcels(json.response || []);
         } else {
-          console.error("Failed to fetch parcel data");
+          alert("Failed to fetch parcel data");
         }
 
         setLoading(false);
       } catch (error) {
-        console.error("An error occurred:", error);
+        alert("An error occurred:", error);
         setLoading(false);
       }
     };

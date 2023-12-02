@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
 export default function Signup() {
   const [credentials, setCredentials] = useState({
     name: "",
@@ -24,7 +25,6 @@ export default function Signup() {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (json.success) {
       navigate("/home");
     } else {
@@ -49,7 +49,7 @@ export default function Signup() {
           onSubmit={handleSubmit}
         >
           <div className="m-3">
-            <label>Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               className="form-control"
@@ -57,10 +57,11 @@ export default function Signup() {
               value={credentials.name}
               onChange={onChange}
               aria-describedby="nameHelp"
+              required
             />
           </div>
           <div className="m-3">
-            <label>Email address</label>
+            <label htmlFor="email">Email address</label>
             <input
               type="email"
               className="form-control"
@@ -68,10 +69,11 @@ export default function Signup() {
               value={credentials.email}
               onChange={onChange}
               aria-describedby="emailHelp"
+              required
             />
           </div>
           <div className="m-3">
-            <label>Mobile Number</label>
+            <label htmlFor="mobile">Mobile Number</label>
             <input
               type="text"
               className="form-control"
@@ -79,17 +81,28 @@ export default function Signup() {
               value={credentials.mobile}
               onChange={onChange}
               aria-describedby="mobileHelp"
+              required
             />
+            <small id="mobileHelp" className="form-text text-muted">
+              Enter a mobile number starting with +358.
+            </small>
           </div>
           <div className="m-3">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
               value={credentials.password}
               onChange={onChange}
               name="password"
+              aria-describedby="passwordHelp"
+              title="Password must be at least 8 characters long and should contain at least 1 lowercase, 1 uppercase, 1 number, and 1 symbol."
+              required
             />
+            <small id="passwordHelp" className="form-text text-muted">
+              Password must be at least 8 characters long and should contain at
+              least 1 lowercase, 1 uppercase, 1 number, and 1 symbol.
+            </small>
           </div>
           <button type="submit" className="m-3 btn btn-success">
             Submit

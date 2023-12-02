@@ -29,12 +29,12 @@ const TrackParcelsHistory = () => {
         if (json.success) {
           setParcels(json.response || []);
         } else {
-          console.error("Failed to fetch parcel data");
+          alert("Failed to fetch parcel data");
         }
 
         setLoading(false);
       } catch (error) {
-        console.error("An error occurred:", error);
+        alert("An error occurred:", error);
         setLoading(false);
       }
     };

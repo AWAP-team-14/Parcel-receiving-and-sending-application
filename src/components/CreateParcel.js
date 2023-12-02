@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const FormField = ({ label, name, value, onChange, options }) => (
+const FormField = ({ label, name, value, onChange, options, message }) => (
   <div className="row mb-3" style={{ paddingLeft: "20px" }}>
     <div className="col-md-6">
       <label>{label} :</label>
@@ -17,7 +17,10 @@ const FormField = ({ label, name, value, onChange, options }) => (
           ))}
         </select>
       ) : (
-        <input type="text" name={name} value={value} onChange={onChange} />
+        <>
+          <input type="text" name={name} value={value} onChange={onChange} />
+          {message && <p style={{ color: "red" }}>{message}</p>}
+        </>
       )}
     </div>
   </div>
@@ -129,6 +132,11 @@ const CreateParcel = ({ onCloseCreateParcel }) => {
             name="mobile"
             value={parcelData.sender.mobile}
             onChange={(e) => handleChange("sender", e)}
+            message={
+              !parcelData.sender.mobile.startsWith("+358")
+                ? "Enter a mobile number starting with +358."
+                : null
+            }
           />
           <FormField
             label="Recipient Name"
@@ -148,6 +156,11 @@ const CreateParcel = ({ onCloseCreateParcel }) => {
             name="mobile"
             value={parcelData.recipient.mobile}
             onChange={(e) => handleChange("recipient", e)}
+            message={
+              !parcelData.recipient.mobile.startsWith("+358")
+                ? "Enter a mobile number starting with +358."
+                : null
+            }
           />
           <div className="row mb-3" style={{ paddingLeft: "20px" }}>
             <div className="col-md-6">

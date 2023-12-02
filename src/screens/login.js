@@ -10,8 +10,6 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${process.env.REACT_APP_API}/login`, {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +21,6 @@ export default function Login() {
     });
 
     const json = await response.json();
-    console.log(json);
 
     if (json.success) {
       // save the auth token and redirect
@@ -32,9 +29,6 @@ export default function Login() {
       localStorage.setItem("user", json.user);
       localStorage.setItem("mobile", json.mobile);
       localStorage.setItem("username", json.username);
-
-      // Retrieving user object from local storage and accessing the 'name' property
-      //const storedUser = JSON.parse(localStorage.getItem("user"));
 
       navigate("/");
     } else {

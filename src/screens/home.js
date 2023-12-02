@@ -46,10 +46,10 @@ export default function Home() {
         localStorage.removeItem("token");
         navigate("/home");
       } else {
-        console.error("Failed to delete account");
+        alert("Failed to delete account");
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      alert("An error occurred:", error);
     }
   };
 
