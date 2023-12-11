@@ -33,8 +33,6 @@ const TrackParcel = () => {
 
         if (json.success) {
           setParcels(json.response || []);
-        } else {
-          alert("Failed to fetch parcel data");
         }
 
         setLoading(false);

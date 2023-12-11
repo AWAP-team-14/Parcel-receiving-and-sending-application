@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar({
@@ -11,6 +11,55 @@ export default function Navbar({
 }) {
   const navigate = useNavigate();
   const [selectedComponent, setSelectedComponent] = useState(null);
+  const [hasNewNotifications, setHasNewNotifications] = useState(false);
+  const [parcelCreatedCount, setParcelCreatedCount] = useState(0);
+  useEffect(() => {
+    // Check if token is available
+    if (localStorage.getItem("token")) {
+      // Check for "Ready for Pickup" status and recipient's mobile number
+      const checkParcelCreated = async () => {
+        try {
+          const response = await fetch(
+            `${process.env.REACT_APP_API}/createparcel`,
+            {
+              method: "GET",
+              headers: {
+                auth_token: localStorage.getItem("token"),
+                mobile: localStorage.getItem("mobile"),
+              },
+            }
+          );
+
+          const json = await response.json();
+          if (json.success) {
+            const createdParcels = json.response.filter(
+              (parcel) =>
+                parcel.status === "Ready for Pickup" &&
+                parcel.recipient.mobile === localStorage.getItem("mobile")
+            );
+            setParcelCreatedCount(createdParcels.length);
+
+            // Update the hasNewNotifications state based on the counter
+            setHasNewNotifications(createdParcels.length > 0);
+          }
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
+      };
+
+      // Call the function to check for "Ready for Pickup" status on mount
+      checkParcelCreated();
+
+      // Set up a timer or interval to periodically check for new notifications
+      const notificationTimer = setInterval(() => {
+        checkParcelCreated();
+      }, 10000); // Check every 6 seconds (adjust as needed)
+
+      return () => {
+        clearInterval(notificationTimer);
+      };
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on mount
 
   const handleLogout = async () => {
     setSelectedComponent(null);
@@ -93,6 +142,32 @@ export default function Navbar({
               </div>
             ) : (
               <div className="d-flex">
+                {hasNewNotifications && (
+                  <span
+                    style={{
+                      top: "10px",
+                      right: "10px",
+                      width: "10px",
+                      height: "10px",
+                      backgroundColor: "red",
+                      borderRadius: "50%",
+                      display: "inline-block",
+                    }}
+                  ></span>
+                )}
+                {/* Parcel counter for "Parcel Created" status */}
+                {parcelCreatedCount > 0 && (
+                  <span
+                    style={{
+                      top: "20px",
+                      right: "20px",
+                      color: "red",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {parcelCreatedCount}
+                  </span>
+                )}
                 <button
                   className={`bg-white text-danger mx-2 ${
                     selectedComponent === "trackParcel" ? "clicked" : ""

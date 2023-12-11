@@ -26,6 +26,7 @@ export default function Signup() {
     });
     const json = await response.json();
     if (json.success) {
+      alert("Signup Successful");
       navigate("/home");
     } else {
       alert("Enter Valid Credentials");
@@ -54,6 +55,7 @@ export default function Signup() {
               type="text"
               className="form-control"
               name="name"
+              id="name"
               value={credentials.name}
               onChange={onChange}
               aria-describedby="nameHelp"
@@ -66,6 +68,7 @@ export default function Signup() {
               type="email"
               className="form-control"
               name="email"
+              id="email"
               value={credentials.email}
               onChange={onChange}
               aria-describedby="emailHelp"
@@ -78,6 +81,7 @@ export default function Signup() {
               type="text"
               className="form-control"
               name="mobile"
+              id="mobile"
               value={credentials.mobile}
               onChange={onChange}
               aria-describedby="mobileHelp"
@@ -95,6 +99,7 @@ export default function Signup() {
               value={credentials.password}
               onChange={onChange}
               name="password"
+              id="password"
               aria-describedby="passwordHelp"
               title="Password must be at least 8 characters long and should contain at least 1 lowercase, 1 uppercase, 1 number, and 1 symbol."
               required

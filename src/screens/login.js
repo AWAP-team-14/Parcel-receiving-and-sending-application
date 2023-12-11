@@ -53,21 +53,23 @@ export default function Login() {
           onSubmit={handleSubmit}
         >
           <div className="m-3">
-            <label>Email address</label>
+            <label htmlFor="username">Email address</label>
             <input
               type="email"
               className="form-control"
               name="username"
+              id="username"
               value={credentials.username}
               onChange={onChange}
               aria-describedby="emailHelp"
             />
           </div>
           <div className="m-3">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
+              id="password"
               value={credentials.password}
               onChange={onChange}
               name="password"

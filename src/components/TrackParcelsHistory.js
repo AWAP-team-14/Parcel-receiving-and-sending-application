@@ -28,8 +28,6 @@ const TrackParcelsHistory = () => {
 
         if (json.success) {
           setParcels(json.response || []);
-        } else {
-          alert("Failed to fetch parcel data");
         }
 
         setLoading(false);
@@ -45,6 +43,20 @@ const TrackParcelsHistory = () => {
       isMounted = false;
     };
   }, []);
+
+  const formatDate = (dateTimeString) => {
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
+
+    const dateTime = new Date(dateTimeString);
+    return dateTime.toLocaleString(undefined, options);
+  };
 
   return (
     <div className="container mt-1">
@@ -73,7 +85,6 @@ const TrackParcelsHistory = () => {
                           </p>
                           <p>Name: {parcel.sender.name}</p>
                           <p>Address: {parcel.sender.address}</p>
-
                           <p>Mobile: {parcel.sender.mobile}</p>
                         </div>
                       </div>
@@ -109,10 +120,12 @@ const TrackParcelsHistory = () => {
                             Parcel Information
                           </p>
                           <p>
-                            readyForPickupDateTime:{" "}
-                            {parcel.readyForPickupDateTime}
+                            Ready For Pickup:{" "}
+                            {formatDate(parcel.readyForPickupDateTime)}
                           </p>
-                          <p>pickedUpDateTime: {parcel.pickedUpDateTime}</p>
+                          <p>
+                            Picked Up: {formatDate(parcel.pickedUpDateTime)}
+                          </p>
                           <p
                             style={{
                               fontWeight: "bold",
