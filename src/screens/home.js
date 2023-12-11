@@ -71,7 +71,7 @@ export default function Home() {
         className="background-image"
         style={{
           backgroundImage:
-            'url("https://img.freepik.com/premium-photo/yellow-locker-with-screen-scanner-storage-packages-purchased-online-messaging-concept-compare-online-e-commerce-packages_325364-1793.jpg?w=826")',
+            'url("https://img.freepik.com/premium-photo/cardboard-boxes-different-sizes-row-purple-background-parcel-delivery-concept_124595-1679.jpg?w=826")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "fixed",
@@ -100,18 +100,16 @@ export default function Home() {
               Welcome to GoParcel
             </h2>
             <p className="lead fs-10 fw-bold text-black text-primary text-justify">
-              Introducing GoParcel, the dependable ally for seamless and
-              trustworthy parcel delivery solutions. Our goal is to streamline
-              and elevate your delivery encounters, ensuring the swift and
-              secure arrival of your packages at their destination. Equipped
-              with an intuitive interface, real-time tracking capabilities, and
-              a devoted team dedicated to excellence, GoParcel is crafted to
-              address your delivery requirements with efficiency and precision.
-              Whether dispatching a crucial document or a unique package, you
-              can rely on GoParcel to manage it with the utmost dependability.
-              Embrace the ease of cutting-edge parcel delivery – opt for
-              GoParcel for a journey that provides more than just deliveries; it
-              delivers tranquility of mind.
+              Go Parcel stands as a leading parcel delivery service committed to
+              refining and optimizing the delivery process. Our dependable and
+              effective services are extended across five lively cities in
+              Finland. Strategically positioned lockers in pivotal urban
+              centers, such as Oulu, Helsinki, Tampere, Turku, and Kuopio,
+              ensure broad accessibility for both senders and recipients. Go
+              Parcel strives to revolutionize the parcel-handling experience,
+              not only enhancing efficiency but also introducing convenience and
+              stress-free solutions for individuals and businesses alike
+              throughout these five cities.
             </p>
           </div>
         )}
@@ -121,18 +119,16 @@ export default function Home() {
               Welcome to GoParcel
             </h2>
             <p className="lead fs-10 fw-bold text-black text-primary text-justify">
-              Introducing GoParcel, the dependable ally for seamless and
-              trustworthy parcel delivery solutions. Our goal is to streamline
-              and elevate your delivery encounters, ensuring the swift and
-              secure arrival of your packages at their destination. Equipped
-              with an intuitive interface, real-time tracking capabilities, and
-              a devoted team dedicated to excellence, GoParcel is crafted to
-              address your delivery requirements with efficiency and precision.
-              Whether dispatching a crucial document or a unique package, you
-              can rely on GoParcel to manage it with the utmost dependability.
-              Embrace the ease of cutting-edge parcel delivery – opt for
-              GoParcel for a journey that provides more than just deliveries; it
-              delivers tranquility of mind.
+              Go Parcel stands as a leading parcel delivery service committed to
+              refining and optimizing the delivery process. Our dependable and
+              effective services are extended across five lively cities in
+              Finland. Strategically positioned lockers in pivotal urban
+              centers, such as Oulu, Helsinki, Tampere, Turku, and Kuopio,
+              ensure broad accessibility for both senders and recipients. Go
+              Parcel strives to revolutionize the parcel-handling experience,
+              not only enhancing efficiency but also introducing convenience and
+              stress-free solutions for individuals and businesses alike
+              throughout these five cities.
             </p>
           </div>
         )}
