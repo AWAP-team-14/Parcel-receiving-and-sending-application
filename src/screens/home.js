@@ -100,13 +100,13 @@ export default function Home() {
               Welcome to GoParcel
             </h2>
             <p className="lead fs-10 fw-bold text-black text-primary text-justify">
-              Go Parcel stands as a leading parcel delivery service committed to
+              GoParcel stands as a leading parcel delivery service committed to
               refining and optimizing the delivery process. Our dependable and
               effective services are extended across five lively cities in
               Finland. Strategically positioned lockers in pivotal urban
               centers, such as Oulu, Helsinki, Tampere, Turku, and Kuopio,
-              ensure broad accessibility for both senders and recipients. Go
-              Parcel strives to revolutionize the parcel-handling experience,
+              ensure broad accessibility for both senders and recipients.
+              GoParcel strives to revolutionize the parcel-handling experience,
               not only enhancing efficiency but also introducing convenience and
               stress-free solutions for individuals and businesses alike
               throughout these five cities.
